@@ -81,7 +81,10 @@ foreach (@ips) {
 	my $ip = $_;
 	print "\nChecking IP: $ip ";
 
-	$ua = LWP::UserAgent->new(agent => $useragent);
+	$ua = LWP::UserAgent->new(
+                    agent => $useragent,
+                    requests_redirectable => []
+            );
 	$ua->default_header('Host' => $ip); 
 
 	my $response = $ua->get("http://$ip/");
